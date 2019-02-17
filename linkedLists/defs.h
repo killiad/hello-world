@@ -14,5 +14,6 @@ typedef struct list_t{
   struct node_s* tail;
 } List;
 
-List* newList();
-Node* newNode(int value);
+List* NewList();
+Node* NewNode(int value);
+void PushFront(List *list, int value);

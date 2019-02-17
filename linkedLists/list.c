@@ -1,6 +1,6 @@
 #include "defs.h"
 
-Node* newNode(int value){
+Node* NewNode(int value){
   Node* node = (Node*)malloc(sizeof(Node));
   node->forward_link=NULL;
   node->backward_link=NULL;
@@ -8,18 +8,27 @@ Node* newNode(int value){
   return node;
 }
 
-List* newList(){
+List* NewList(){
   List* list = (List*)malloc(sizeof(List));
   if(list == NULL){
     printf("***LIST ALLOCATION FAILURE***");
     exit(-1);
   }
-  list->head = newNode(-1);
-  list->tail = newNode(-1);
+  list->head = NewNode(-1);
+  list->tail = NewNode(-1);
   list->head->forward_link = list->tail;
   list->tail->backward_link = list->head;
   list->head->isDummy = 1;
   list->tail->isDummy = 1;
   list->size = 0;
   return list;
+}
+
+void PushFront(List* list, int value){
+  Node* node = NewNode(value);
+  node->forward_link = list->head->forward_link;
+  node->backward_link = list->head;
+  list->head->forward_link->backward_link = node;
+  list->head->forward_link = node;
+  list->size++;
 }
