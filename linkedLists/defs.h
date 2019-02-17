@@ -17,3 +17,4 @@ typedef struct list_t{
 List* NewList();
 Node* NewNode(int value);
 void PushFront(List *list, int value);
+int PopFront(List *list);

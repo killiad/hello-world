@@ -32,3 +32,13 @@ void PushFront(List* list, int value){
   list->head->forward_link = node;
   list->size++;
 }
+
+int PopFront(List *list){
+  Node* node = list->head->forward_link;
+  int value = node->value;
+  list->head->forward_link = node->forward_link;
+  node->forward_link->backward_link = list->head;
+  free(node);
+  list->size--;
+  return value;
+}
