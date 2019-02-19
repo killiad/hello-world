@@ -38,6 +38,15 @@ void PushFront(List* list, int value){
   list->size++;
 }
 
+void PushRear(List *list, int value){
+  Node* node = NewNode(value);
+  node->backward_link = list->tail->backward_link;
+  node->forward_link  = list->tail;
+  list->tail->backward_link->forward_link = node;
+  list->tail->backward_link = node;
+  list->size++;
+}
+
 int PopFront(List *list){
   Node* node = list->head->forward_link;
   int value = node->value;
