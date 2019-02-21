@@ -5,7 +5,6 @@ typedef struct node_s{
   int value;
   struct node_s* forward_link;
   struct node_s* backward_link;
-  _Bool isDummy;
 } Node;
 
 typedef struct list_t{
@@ -19,4 +18,6 @@ Node* NewNode(int value);
 void PushFront(List *list, int value);
 void PushRear(List *list, int value);
 int PopFront(List *list);
+int PopRear(List *list);
 void ForwardWalk(List *list);
+void BackwardWalk(List *list);
