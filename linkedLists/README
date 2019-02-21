@@ -1,5 +1,7 @@
-This folder holds code for linked lists in C. This code is for a doubly-linked linear linked list. Current functions include NewList,
-NewNode, PushFront, PushRear, PopFront, PopRear, ForwardWalk, and BackwardWalk. See list.c for implementation and details.
+This folder holds code for linked lists in C. This code is for a
+doubly-linked linear linked list. Current functions include NewList, 
+NewNode, PushFront, PushRear, PopFront, PopRear, ForwardWalk, and BackwardWalk.
+See list.c for implementation and details.
 
 Future Function Implementations:
 1) Read a string of values from a file and put them into a linked list
