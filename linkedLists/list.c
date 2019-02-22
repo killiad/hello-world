@@ -175,3 +175,34 @@ void EditNode(List *list, int position, int new_value){
     printf("Position is out of bounds!");
   }
 }
+
+void InsertNode(List *list, int position, int value){
+   if (0 < position && position <= list->size){
+     Node *node = NewNode(value);
+     Node *pushedNode = GoToNode(list, position);
+     node->forward_link = pushedNode;
+     node->backward_link = pushedNode->backward_link;
+     pushedNode->backward_link->forward_link = node;
+     pushedNode->backward_link = node;
+     list->size++;
+   }
+   else{
+     printf("Position is out of bounds!");
+   }
+}
+
+int RemoveNode(List *list, int position){
+  if (0 < position && position <= list->size){
+    Node *poppedNode = GoToNode(list, position);
+    int value = poppedNode->value;
+    poppedNode->forward_link->backward_link = poppedNode->backward_link;
+    poppedNode->backward_link->forward_link = poppedNode->forward_link;
+    free(poppedNode);
+    list->size--;
+    return value;
+  }
+  else{
+     printf("Position is out of bounds!");
+     return -1;
+   }
+}

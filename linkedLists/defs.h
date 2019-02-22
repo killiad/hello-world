@@ -23,3 +23,5 @@ void ForwardWalk(List *list);
 void BackwardWalk(List *list);
 Node* GoToNode(List *list, int position);
 void EditNode(List *list, int position, int new_value);
+void InsertNode(List *list, int position, int value);
+int RemoveNode(List *list, int position);
