@@ -7,3 +7,8 @@ Future Function Implementations:
 1) Read a string of values from a file and put them into a linked list
 2) Delete a linked list
 3) Ability to add a node at any point in the linked list
+
+Commands will include:
+1) Alphabetize
+2) Print a node
+3) Insert, Pop, Push, print, etc

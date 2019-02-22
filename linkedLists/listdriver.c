@@ -29,5 +29,10 @@ int main(){
   printf("List size is %d\n", list->size);
   BackwardWalk(list);
   printf("\n");
+  Node* test = GoToNode(list, 2);
+  printf("Node value retrieved was %d\n", test->value);
+  EditNode(list, 4, 16);
+  ForwardWalk(list);
+  printf("\n");
   return 0;
 }

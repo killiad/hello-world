@@ -21,3 +21,5 @@ int PopFront(List *list);
 int PopRear(List *list);
 void ForwardWalk(List *list);
 void BackwardWalk(List *list);
+Node* GoToNode(List *list, int position);
+void EditNode(List *list, int position, int new_value);

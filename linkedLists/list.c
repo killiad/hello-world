@@ -137,3 +137,41 @@ void ForwardWalk(List *list){
     printf("Empty List!\n");
   }
 }
+
+Node* GoToNode(List *list, int position){
+  int counter = 0;
+
+  if(position > list->size || position < 1){
+    printf("Position out of bounds!\n");
+    return list->tail;
+  }
+
+  else if(position*2 <= list->size){
+    Node *node = list->head;
+    while(counter != position){
+      node = node->forward_link;
+      counter++;
+    }
+    return node;
+  }
+
+  else{
+    Node *node = list->tail;
+    position = list->size - position + 1;
+    while(counter != position){
+      node = node->backward_link;
+      counter++;
+    }
+    return node;
+  }
+}
+
+void EditNode(List *list, int position, int new_value){
+  if (0 < position && position <= list->size){
+    Node *node = GoToNode(list, position);
+    node->value = new_value;
+  }
+  else{
+    printf("Position is out of bounds!");
+  }
+}
