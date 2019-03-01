@@ -1,43 +1,5 @@
 #include "defs.h"
 
-/*INPUT: Integer value to be stored in the list
-  FUNCTION: Dynamically allocates a new node
-  OUTPUT: list node*/
-Node* NewNode(int value){
-  Node* node = (Node*)malloc(sizeof(Node));
-
-  if(node == NULL){
-    printf("***NODE ALLOCATION FAILURE");
-    exit(-1);
-  }
-
-  //initializing default state of node to be not connected to any list
-  node->forward_link=NULL;
-  node->backward_link=NULL;
-  node->value = value;
-  return node;
-}
-
-/*INPUT: void
-  FUNCTION: Dynamically allocates a new, doubly-linked linear list
-  OUTPUT: the newly allocated linked list*/
-List* NewList(){
-  List* list = (List*)malloc(sizeof(List));
-
-  if(list == NULL){
-    printf("***LIST ALLOCATION FAILURE***");
-    exit(-1);
-  }
-
-  //initializing dummy head and tail nodes
-  list->head = NewNode(-1);
-  list->tail = NewNode(-1);
-  list->head->forward_link = list->tail;
-  list->tail->backward_link = list->head;
-  list->size = 0;
-  return list;
-}
-
 /*INPUT: linked list name, node value
   FUNCTION: Addes a new node to the front of the list
   OUTPUT: void*/
@@ -100,72 +62,9 @@ int PopRear(List *list){
   return value;
 }
 
-/*INPUT: linked list name
-  FUNCTION: walks the list forward, printing out the value of each node
+/*INPUT: linked list name, position of desired node, new value of node
+  FUNCTION: Edits the value of a desired node
   OUTPUT: void*/
-void ForwardWalk(List *list){
-  Node* node = list->head->forward_link;
-  int counter = 0;
-
-  //walks list until we reach the end, which is given by the size of the list
-  while(counter != list->size){
-    printf("\nNode %d: %d", ++counter, node->value);
-    node = node->forward_link;
-  }
-
-  //checks for an empty list
-  if(list->size == 0){
-    printf("Empty List!\n");
-  }
-}
-
-/*INPUT: linked list name
-  FUNCTION: walks the list backward, printing out the value of each node
-  OUTPUT: void*/
-  void BackwardWalk(List *list){
-    Node *node = list->tail->backward_link;
-    int counter = 0;
-
-    //walks list until we reach the end, which is given by the size of the list
-    while(counter != list->size){
-      printf("\nNode %d: %d", list->size - counter++, node->value);
-      node = node->backward_link;
-    }
-
-    //checks for an empty list
-    if(list->size == 0){
-    printf("Empty List!\n");
-  }
-}
-
-Node* GoToNode(List *list, int position){
-  int counter = 0;
-
-  if(position > list->size || position < 1){
-    printf("Position out of bounds!\n");
-    return list->tail;
-  }
-
-  else if(position*2 <= list->size){
-    Node *node = list->head;
-    while(counter != position){
-      node = node->forward_link;
-      counter++;
-    }
-    return node;
-  }
-
-  else{
-    Node *node = list->tail;
-    position = list->size - position + 1;
-    while(counter != position){
-      node = node->backward_link;
-      counter++;
-    }
-    return node;
-  }
-}
-
 void EditNode(List *list, int position, int new_value){
   if (0 < position && position <= list->size){
     Node *node = GoToNode(list, position);
@@ -176,6 +75,9 @@ void EditNode(List *list, int position, int new_value){
   }
 }
 
+/*INPUT: linked list name, position of desired node, value for node
+  FUNCTION: Inserts a new node anywhere in the linked list
+  OUTPUT: void*/
 void InsertNode(List *list, int position, int value){
    if (0 < position && position <= list->size){
      Node *node = NewNode(value);
@@ -191,6 +93,9 @@ void InsertNode(List *list, int position, int value){
    }
 }
 
+/*INPUT: linked list named, position of desired node
+  FUNCTION: removes any node from the linked list
+  OUTPUT: integer value of removed node*/
 int RemoveNode(List *list, int position){
   if (0 < position && position <= list->size){
     Node *poppedNode = GoToNode(list, position);
